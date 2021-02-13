@@ -12,12 +12,17 @@
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <p>{{ test }}</p>
+  <p>{{ test }}</p>
     <h1>{{ test_function() }}</h1>
-  </div>
-  <ion-button (click)="openPage()">Open Page</ion-button>
+  <ion-button (click)="openPage()" expand='block'>Open Page</ion-button>
+  <ion-button routerLink="/details" expand="block">Open page using Router Links</ion-button>
+  <ion-input type="text" [(ngModel)]="newToDos" placeholder="add new to do list"></ion-input>
+  <ion-button (click)="addToDo()" expand='block'>Add New To Do List</ion-button>
+  <ion-list *ngFor="let todo of toDo">
+    <ion-item>
+      {{ todo }}
+    </ion-item>
+  </ion-list>
+
+
 </ion-content>

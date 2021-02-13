@@ -8,11 +8,19 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
   test = "This is just a test";
+  toDo = ['milk', 'test', 'what'];
+  newToDos = '';
 
   constructor(private route: Router) {}
 
   openPage() {
     this.route.navigateByUrl("/details");
+  }
+
+  addToDo() {
+    this.toDo.push(this.newToDos);
+    this.newToDos = "";
+    console.log("To Do: ",this.toDo);
   }
 
   test_function() {
