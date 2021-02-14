@@ -12,11 +12,15 @@ export class FavoriteService {
   constructor(private storage: Storage) { }
 
   getAllFavoriteFilms() {
+    console.log(this.storage.get(STORAGE_KEY));
     return this.storage.get(STORAGE_KEY);
   }
 
   isFavorite(filmId) {
     return this.getAllFavoriteFilms().then(result => {
+      // if results and index exists
+      console.log(result && result.indexOf(filmId) !== -1);
+      console.log(result);
       return result && result.indexOf(filmId) !== -1;
     });
   }
