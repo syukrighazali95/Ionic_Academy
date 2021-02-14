@@ -27,6 +27,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('../people/people.module').then(m => m.PeoplePageModule)
+          },
+          {
+            path: ':id',
+            loadChildren: () => import('../people-details/people-details.module').then(m => m.PeopleDetailsPageModule)
           }
         ]
       },
@@ -36,6 +40,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('../planets/planets.module').then(m => m.PlanetsPageModule)
+          },
+          {
+            path: ":id",
+            loadChildren: () => import('../planets-details/planets-details.module').then(m => m.PlanetsDetailsPageModule)
           }
         ]
       }
