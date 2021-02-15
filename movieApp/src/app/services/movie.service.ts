@@ -25,6 +25,7 @@ export class MovieService {
     // console.log(link);
     return this.http.get(link).pipe(
       map(results => results['Search'])
+      // return data using key Search which can be found in the api
     );
   }
 
