@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPage implements OnInit {
 
+  pages = [
+    {
+      title: 'First Page with Tabs',
+      url: '/menu/first'
+    }, 
+    {
+      title: "Second Page blank",
+      url: '/menu/second'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() {
   }
+
+
 
 }
