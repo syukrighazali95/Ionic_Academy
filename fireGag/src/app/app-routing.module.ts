@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login'])
+
 
 const routes: Routes = [
   {
@@ -8,7 +12,12 @@ const routes: Routes = [
   },
   {
     path: 'new-gag',
+    ...canActivate(redirectUnauthorizedToLogin),
     loadChildren: () => import('./pages/new-gag/new-gag.module').then( m => m.NewGagPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
 ];
 
