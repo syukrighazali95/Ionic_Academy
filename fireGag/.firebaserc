@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "academy-fire-gag-a73da": {
+      "hosting": {
+        "app": [
+          "academy-fire-gag-a73da"
+        ]
+      }
+    }
+  }
+}
