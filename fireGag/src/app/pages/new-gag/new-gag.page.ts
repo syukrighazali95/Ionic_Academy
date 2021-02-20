@@ -42,7 +42,7 @@ export class NewGagPage implements OnInit {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    this.dataService.addGag(this.gag).then((res) => {
+    this.dataService.addGag(this.gag).subscribe((res) => {
       console.log('after add: ', res);
       loading.dismiss();
       this.router.navigateByUrl('/');
