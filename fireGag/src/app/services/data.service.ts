@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 import firebase from 'firebase/app'
@@ -13,12 +14,22 @@ export interface Gag {
   createdAt?: firebase.firestore.FieldValue;
 }
 
+export interface User {
+  uid: string,
+  email: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-  constructor(private afs: AngularFirestore, private storage: AngularFireStorage) { }
+  currentUser: User = null;
+  constructor(private afs: AngularFirestore, private storage: AngularFireStorage, private afAuth:AngularFireAuth) {
+    this.afAuth.onAuthStateChanged(user => {
+      console.log("user changed: ", user);
+      this.currentUser = user;
+    })
+   }
 
   addGag(gag: Gag) {
     let newName = `${new Date().getTime()}-DUMMY.png`;
@@ -35,14 +46,32 @@ export class DataService {
         console.log('my url: ', url);
         return this.afs.collection('gags').add({
           title: gag.title,
-          creator: '123',
+          creator: this.currentUser.uid,
           image: url,
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         })
       })
     )
+
+    
     
   }
 
+  async signUp({email, password}) {
+    const credential = await this.afAuth.createUserWithEmailAndPassword(email, password);
+    const uid = credential.user.uid;
+    return this.afs.doc(`users/${uid}`).set({
+      uid,
+      email: credential.user.email
+    });
+  }
+
+  signIn({email, password}) {
+      return this.afAuth.signInWithEmailAndPassword(email,password);
+  }
+
+  signOut() {
+    return this.afAuth.signOut();
+  }
 
 }
