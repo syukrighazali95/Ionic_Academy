@@ -3,8 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 import firebase from 'firebase/app'
-import { from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { switchMap,take } from 'rxjs/operators';
 
 export interface Gag {
   title: string,
@@ -72,6 +72,11 @@ export class DataService {
 
   signOut() {
     return this.afAuth.signOut();
+  }
+
+  getGags() {
+    return this.afs.collection('gags', ref => ref.orderBy('createdAt', 'desc'))
+    .valueChanges({ idField: 'id'}).pipe(take(1)) as Observable<Gag>
   }
 
 }
