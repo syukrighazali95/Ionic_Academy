@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 import firebase from 'firebase/app'
 import { from, Observable } from 'rxjs';
-import { switchMap,take } from 'rxjs/operators';
+import { switchMap,take, map } from 'rxjs/operators';
 
 export interface Gag {
   title: string,
@@ -50,11 +50,41 @@ export class DataService {
           image: url,
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         })
+      }),
+      switchMap((document) => {
+        console.log("document: ", document);
+        return this.afs.doc(`votes/${document.id}`).set({
+          upvotes: [],
+          downvote: []
+        });
       })
     )
+  }
 
-    
-    
+  getVotes(){
+    return this.afs.collection('votes').valueChanges({ idField: 'id'}).pipe(
+      map(votes => {
+        let result = {};
+        for (let v of votes) {
+          result[v.id] = v;
+        }
+        return result;
+      })
+    )
+  }
+
+  upvote(gag:Gag){
+    return this.afs.doc(`votes/${gag.id}`).update({
+      upvote: firebase.firestore.FieldValue.arrayUnion(this.currentUser.uid),
+      downvote: firebase.firestore.FieldValue.arrayRemove(this.currentUser.uid)
+    })
+  }
+
+  downvote(gag:Gag){
+    return this.afs.doc(`votes/${gag.id}`).update({
+      upvote: firebase.firestore.FieldValue.arrayRemove(this.currentUser.uid),
+      downvote: firebase.firestore.FieldValue.arrayUnion(this.currentUser.uid)
+    })
   }
 
   async signUp({email, password}) {

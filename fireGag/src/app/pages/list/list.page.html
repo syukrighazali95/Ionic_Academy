@@ -23,6 +23,22 @@
         {{ gag.createdAt?.toMillis() | date:'short' }}
       </ion-card-subtitle>
       <ion-img [src]="gag.image"></ion-img>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="4">
+            <ion-button fill="clear" (click)="upvote(gag)">
+              <ion-icon name="arrow-up" slot="start"></ion-icon>
+              <span *ngIf="votes && votes[gag.id]">{{ votes[gag.id].upvote.length }}</span>
+            </ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button fill="clear" (click)="downvote(gag)">
+              <ion-icon name="arrow-down" slot="start"></ion-icon>
+              <span *ngIf="votes && votes[gag.id]">{{ votes[gag.id].downvote.length }}</span>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
     </ion-card-header>
   </ion-card>
  

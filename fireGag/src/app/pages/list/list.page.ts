@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+import { Router } from '@angular/router';
+import { DataService, Gag } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-list',
@@ -8,9 +9,14 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ListPage implements OnInit {
   gags:any = [];
-  constructor(private dataService: DataService) { }
+  votes = null;
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
+    this.dataService.getVotes().subscribe(res => {
+      console.log('votes: ', res);
+      this.votes = res;
+    });
   }
 
   signOut() {
@@ -29,6 +35,22 @@ export class ListPage implements OnInit {
         event.target.complete();
       }
     })
+  }
+
+  upvote(gag:Gag){
+    if (!this.dataService.currentUser){
+      this.router.navigateByUrl('/login');
+      return;
+    }
+    this.dataService.upvote(gag);
+  }
+
+  downvote(gag:Gag){
+    if (!this.dataService.currentUser){
+      this.router.navigateByUrl('/login');
+      return;
+    }
+    this.dataService.downvote(gag);
   }
 
 }
