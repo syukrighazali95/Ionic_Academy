@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="ion-padding">
 
   <ion-slides pager="true" #slides>
     <ion-slide>
@@ -11,9 +11,12 @@
 
     <ion-slide>
       <h1>Setup Your App</h1>
+
+
+
       <ion-list>
         <ion-radio-group [(ngModel)]="currency">
-          <ion-list-header>
+          <ion-list-header>Currency</ion-list-header>
             <ion-item>
               <ion-label>Ringgit</ion-label>
               <ion-radio slot="start" value="rm"></ion-radio>
@@ -28,8 +31,7 @@
               <ion-label>Dollar</ion-label>
               <ion-radio slot="start" value="usd"></ion-radio>
             </ion-item>
-  
-          </ion-list-header>
+          
         </ion-radio-group>
       </ion-list>
       <ion-button expand="button" color="light" (click)="saveAndStart()">
