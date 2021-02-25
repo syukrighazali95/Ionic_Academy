@@ -22,9 +22,9 @@ export class IntroPage implements OnInit {
     this.slides.slideNext();
   }
 
-  saveAndStart(){
-    this.storage.set('seen-intro', true);
-    this.storage.set('selected-currency', this.currency);
+  async saveAndStart(){
+    await this.storage.set('seen-intro', true);
+    await this.storage.set('selected-currency', this.currency);
     this.router.navigateByUrl('/')
   }
 
