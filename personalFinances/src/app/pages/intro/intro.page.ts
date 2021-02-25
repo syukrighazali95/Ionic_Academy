@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-intro',
@@ -11,7 +13,7 @@ export class IntroPage implements OnInit {
 
   @ViewChild('slides') slides: IonSlides;
 
-  constructor() { }
+  constructor(private storage: Storage, private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,7 +23,9 @@ export class IntroPage implements OnInit {
   }
 
   saveAndStart(){
-    
+    this.storage.set('seen-intro', true);
+    this.storage.set('selected-currency', this.currency);
+    this.router.navigateByUrl('/')
   }
 
 }
