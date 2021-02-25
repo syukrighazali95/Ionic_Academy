@@ -17,6 +17,14 @@ const routes: Routes = [
     redirectTo: 'menu',
     pathMatch: 'full'
   },
+  {
+    path: 'tracker',
+    loadChildren: () => import('./pages/tracker/tracker.module').then( m => m.TrackerPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
   
 ];
 
