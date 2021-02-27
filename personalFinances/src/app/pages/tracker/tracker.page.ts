@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { CashFlowModalPage } from '../cash-flow-modal/cash-flow-modal.page';
 
 @Component({
   selector: 'app-tracker',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrackerPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
+  }
+
+  async addCashFlow() {
+    let modal = await this.modalCtrl.create({
+      component: CashFlowModalPage,
+      cssClass: "modalCss"
+    });
+    modal.present()
+
+    modal.onDidDismiss().then(res => {
+      if (res && res.data) {
+        this.loadTransactions();
+      }
+    })
+  }
+
+  loadTransactions() {
+    
   }
 
 }
