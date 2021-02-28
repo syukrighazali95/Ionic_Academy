@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { CashService } from 'src/app/services/cash.service';
 import { CashFlowModalPage } from '../cash-flow-modal/cash-flow-modal.page';
 
 @Component({
@@ -9,7 +11,14 @@ import { CashFlowModalPage } from '../cash-flow-modal/cash-flow-modal.page';
 })
 export class TrackerPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  selectedCurrency = '';
+  transaction = [];
+  constructor(private modalCtrl: ModalController, private cashService: CashService, private plt: Platform, private storage: Storage) { }
+
+  async ionViewWillEnter() {
+    await this.plt.ready();
+    this.loadTransactions();
+  }
 
   ngOnInit() {
   }
@@ -29,7 +38,13 @@ export class TrackerPage implements OnInit {
   }
 
   loadTransactions() {
-    
+    this.storage.get('selected-currency').then(currency => {
+      this.selectedCurrency = currency.toUpperCase();
+    });
+    this.cashService.getTransactions().then(trans => {
+      this.transaction = trans;
+      console.log('transaction: ', trans)
+    });
   }
 
 }
