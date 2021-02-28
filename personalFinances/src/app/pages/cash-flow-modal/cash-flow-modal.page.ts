@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { CashFlow, CashService, Transaction } from 'src/app/services/cash.service';
 
 @Component({
   selector: 'app-cash-flow-modal',
@@ -16,9 +17,19 @@ export class CashFlowModalPage implements OnInit {
     {name: "Education", icon: "school"},
     {name: "Travel", icon: "airplane"}
 
-  ]
+  ];
 
-  constructor(private modalCtrl: ModalController) { }
+  created_at = new Date().toISOString();
+
+  transaction: Transaction = {
+    created_at: Date.now(),
+    title: "",
+    value: 0,
+    type: CashFlow.Expense,
+    category: this.categories[0]
+  };
+
+  constructor(private modalCtrl: ModalController, private cashServices: CashService, private toastCtrl: ToastController ) { }
 
   ngOnInit() {
   }

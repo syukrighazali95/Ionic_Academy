@@ -1,9 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>cashFlowModal</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-card-header>
+    <ion-card-title>New Transactions</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-item>
+      <ion-segment type="number" [{ngModel}]="transaction.type">
+        <ion-segment-button type="number" value="0">
+          <ion-label>
+            Expense
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button type="number" value="1">
+          <ion-label>
+            Income
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+  </ion-card-content>
 
 </ion-content>
+
