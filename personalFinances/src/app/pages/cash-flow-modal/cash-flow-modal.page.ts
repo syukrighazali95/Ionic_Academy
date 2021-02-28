@@ -29,12 +29,27 @@ export class CashFlowModalPage implements OnInit {
     category: this.categories[0]
   };
 
-  constructor(private modalCtrl: ModalController, private cashServices: CashService, private toastCtrl: ToastController ) { }
+  constructor(private modalCtrl: ModalController, private cashService: CashService, private toastCtrl: ToastController ) { }
 
   ngOnInit() {
   }
 
   addTransaction() {
+    this.transaction.type = +this.transaction.type;
+    this.transaction.created_at = new Date(this.created_at).getTime();
+
+    if (this.transaction.type == CashFlow.Income) {
+      this.transaction.category = { name: 'Income', icon: 'cash'};
+    }
+
+    this.cashService.addTransaction(this.transaction).then(() => {
+      let toast = this.toastCtrl.create({
+        message: "Transaction Saved!",
+        duration: 2000
+      })
+      toast.then(toast => toast.present());
+      this.modalCtrl.dismiss({ reload: true});
+    })
 
   }
 

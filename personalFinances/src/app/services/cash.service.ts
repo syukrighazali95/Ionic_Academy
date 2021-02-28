@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 const TRANSACTION_KEY = 'transactions';
 const SELECTED_CURRENCY_KEY = 'selected-currency';
