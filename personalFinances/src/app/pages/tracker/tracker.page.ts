@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController, Platform } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonList, ModalController, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { CashService } from 'src/app/services/cash.service';
+import { CashService, Transaction } from 'src/app/services/cash.service';
 import { CashFlowModalPage } from '../cash-flow-modal/cash-flow-modal.page';
 
 @Component({
@@ -12,7 +12,10 @@ import { CashFlowModalPage } from '../cash-flow-modal/cash-flow-modal.page';
 export class TrackerPage implements OnInit {
 
   selectedCurrency = '';
-  transaction = [];
+  transaction: Transaction[] = [];
+  
+  @ViewChild('slidingList') slidingList: IonList
+  
   constructor(private modalCtrl: ModalController, private cashService: CashService, private plt: Platform, private storage: Storage) { }
 
   async ionViewWillEnter() {
@@ -45,6 +48,12 @@ export class TrackerPage implements OnInit {
       this.transaction = trans;
       console.log('transaction: ', trans)
     });
+  }
+
+  async removeTransaction(i) {
+    this.transaction.splice(i, 1);
+    this.cashService.updateTransactions(this.transaction);
+    await this.slidingList.closeSlidingItems();
   }
 
 }
