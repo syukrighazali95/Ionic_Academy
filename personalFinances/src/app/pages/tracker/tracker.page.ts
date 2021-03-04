@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonList, ModalController, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { CashService, Transaction } from 'src/app/services/cash.service';
+import { CashFlow, CashService, Transaction } from 'src/app/services/cash.service';
 import { CashFlowModalPage } from '../cash-flow-modal/cash-flow-modal.page';
 
 @Component({
@@ -13,6 +13,7 @@ export class TrackerPage implements OnInit {
 
   selectedCurrency = '';
   transaction: Transaction[] = [];
+  cashFlow = 0;
   
   @ViewChild('slidingList') slidingList: IonList
   
@@ -40,11 +41,11 @@ export class TrackerPage implements OnInit {
     })
   }
 
-  loadTransactions() {
-    this.storage.get('selected-currency').then(currency => {
+  async loadTransactions() {
+    await this.storage.get('selected-currency').then(currency => {
       this.selectedCurrency = currency.toUpperCase();
     });
-    this.cashService.getTransactions().then(trans => {
+    await this.cashService.getTransactions().then(trans => {
       this.transaction = trans;
       console.log('transaction: ', trans)
     });
@@ -54,6 +55,17 @@ export class TrackerPage implements OnInit {
     this.transaction.splice(i, 1);
     this.cashService.updateTransactions(this.transaction);
     await this.slidingList.closeSlidingItems();
+    this.updateCashFlow();
+  }
+
+  updateCashFlow() {
+    let result = 0;
+    this.transaction.map(trans => {
+      result = trans.type == CashFlow.Expense ? -trans.value : +trans.value;
+
+    });
+
+    this.cashFlow = result;
   }
 
 }
