@@ -1,20 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Ionic Params
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content padding>
+  <ion-item>
+    <ion-input [(ngModel)] = "value" clearInput></ion-input>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-button expand="full" [routerLink]="['/second', value]" routerDirection="forward">Push with Router Link</ion-button>
+  <ion-button expand="full" (click)="pushPage()">Push with function</ion-button>
+  <ion-button expand="full" (click)="openModal()">Open Modal</ion-button>
+  <ion-button expand="full" (click)="openPopover($event)">Open PopOver</ion-button>
+
 </ion-content>
