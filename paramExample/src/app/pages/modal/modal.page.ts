@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal.page.scss'],
 })
 export class ModalPage implements OnInit {
+  passedId = null;
 
-  constructor() { }
+  constructor(private navParams: NavParams, private modalController: ModalController) { }
 
   ngOnInit() {
+    this.passedId = this.navParams.get('custom_id')
+  }
+
+  closeModal() {
+    this.modalController.dismiss();
   }
 
 }
