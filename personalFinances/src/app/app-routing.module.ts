@@ -16,6 +16,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'menu/tracker',
     pathMatch: 'full'
+  },
+  {
+    path: 'filter-popover',
+    loadChildren: () => import('./pages/filter-popover/filter-popover.module').then( m => m.FilterPopoverPageModule)
   }
   
   
