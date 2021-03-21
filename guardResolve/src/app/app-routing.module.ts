@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { DummyGuardService } from './guards/dummy-guard.service';
+import { DummyResolveService } from './resolver/dummy-resolve.service';
 
 const routes: Routes = [
   {
@@ -12,7 +14,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'details',
+    path: 'home/:id',
+    resolve: {
+      pokemon: DummyResolveService
+    },
+    canActivate: [DummyGuardService],
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
   },
 ];
