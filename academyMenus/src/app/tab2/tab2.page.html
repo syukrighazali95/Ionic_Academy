@@ -1,17 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-</ion-content>
+<ion-split-pane contentId="second-content" [disabled]="!paneEnabled">
+  <ion-menu contentId="second-content" menuId="second">
+ 
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu 2</ion-title>
+      </ion-toolbar>
+    </ion-header>
+ 
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" menu="second">
+          <ion-item routerLink="/tabs/tab2/user" routerDirection="root" routerLinkActive="active-item">
+            <ion-label>
+              User
+            </ion-label>
+          </ion-item>
+          <ion-item routerLink="/tabs/tab2/account" routerDirection="root" routerLinkActive="active-item">
+            <ion-label>
+              Account
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    
+  </ion-menu>
+ 
+  <ion-router-outlet id="second-content"></ion-router-outlet>
+</ion-split-pane>

@@ -6,6 +6,23 @@ const routes: Routes = [
   {
     path: '',
     component: Tab2Page,
+    children: [
+      {
+        path: 'user',
+        loadChildren: () =>
+          import('../user/user.module').then(m => m.UserPageModule)
+      },
+      {
+        path: 'account',
+        loadChildren: () =>
+          import('../account/account.module').then(m => m.AccountPageModule)
+      },
+      {
+        path: '',
+        redirectTo: 'user',
+        pathMatch: 'full'
+      }
+    ]
   }
 ];
 
