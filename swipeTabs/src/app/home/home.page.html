@@ -1,12 +1,17 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start" *ngIf="canGoBack">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
-      Academy Swipe
+      {{ title }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<super-tabs>
+<super-tabs (tabChange)="onTabChange($event)">
   <super-tabs-toolbar slot="top" color="primary">
     <super-tab-button>
       <ion-icon name="newspaper-outline" color="light"></ion-icon>
@@ -25,17 +30,17 @@
   <super-tabs-container>
     <super-tab>
       <ion-content>
-        My news
+        <ion-nav [root]="newsPage" #newsNav></ion-nav>
       </ion-content>
     </super-tab>
     <super-tab>
       <ion-content>
-        My account
+        <ion-nav [root]="accountPage"></ion-nav>
       </ion-content>
     </super-tab>
     <super-tab>
       <ion-content>
-        App about
+        <ion-nav [root]="aboutPage"></ion-nav>
       </ion-content>
     </super-tab>
   </super-tabs-container>
