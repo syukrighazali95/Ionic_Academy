@@ -1,20 +1,42 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Academy Swipe
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<super-tabs>
+  <super-tabs-toolbar slot="top" color="primary">
+    <super-tab-button>
+      <ion-icon name="newspaper-outline" color="light"></ion-icon>
+      <ion-label>News</ion-label>
+    </super-tab-button>
+    <super-tab-button>
+      <ion-icon name="person-circle-outline" color="light"></ion-icon>
+      <ion-label>Account</ion-label>
+    </super-tab-button>
+    <super-tab-button>
+      <ion-icon name="information-circle-outline" color="light"></ion-icon>
+      <ion-label>About</ion-label>
+    </super-tab-button>
+  </super-tabs-toolbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <super-tabs-container>
+    <super-tab>
+      <ion-content>
+        My news
+      </ion-content>
+    </super-tab>
+    <super-tab>
+      <ion-content>
+        My account
+      </ion-content>
+    </super-tab>
+    <super-tab>
+      <ion-content>
+        App about
+      </ion-content>
+    </super-tab>
+  </super-tabs-container>
+</super-tabs>
