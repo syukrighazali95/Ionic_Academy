@@ -13,6 +13,8 @@ export class HomePage {
   accountPage = AccountPage;
   aboutPage = AboutPage;
 
+  title = "News";
+
   constructor() {}
 
 }
