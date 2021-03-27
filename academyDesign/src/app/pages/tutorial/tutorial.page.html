@@ -1,11 +1,28 @@
-<ion-slides>
-  <ion-slide>
+<ion-slides style=" width: 100%;" #slides>
+  <ion-slide class="slide-1">
     <ion-img src="/assets/imgs/slide-1.png"></ion-img>
     <div class="bottom-box">
       <h1>Enjoy the best Ionic tutorials</h1>
       <p>Learn Ionic with in-depth videos</p>
       <ion-button (click)="next()"> What else</ion-button>
     </div>
-    
+  </ion-slide>
+
+  <ion-slide class="slide-2">
+    <ion-img src="/assets/imgs/slide-2.png"></ion-img>
+    <div class="bottom-box">
+      <h1>Build real apps</h1>
+      <p>Get more experience with projects</p>
+      <ion-button (click)="next()"> Sounds great</ion-button>
+    </div>
+  </ion-slide>
+
+  <ion-slide class="slide-3">
+    <ion-img src="/assets/imgs/slide-3.png"></ion-img>
+    <div class="bottom-box">
+      <h1>Fix Problems Faster</h1>
+      <p>Get help from the Community</p>
+      <ion-button (click)="finish()">Enjoy the Ionic Academy App</ion-button>
+    </div>
   </ion-slide>
 </ion-slides>
