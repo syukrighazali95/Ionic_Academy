@@ -12,4 +12,8 @@ export class TutorialPage implements OnInit {
   ngOnInit() {
   }
 
+  next() {
+    
+  }
+
 }
