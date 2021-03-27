@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NewsDetailsPageRoutingModule } from './news-details-routing.module';
-
 import { NewsDetailsPage } from './news-details.page';
 
 @NgModule({
@@ -13,8 +11,8 @@ import { NewsDetailsPage } from './news-details.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    NewsDetailsPageRoutingModule
   ],
-  declarations: [NewsDetailsPage]
+  declarations: [NewsDetailsPage],
+  entryComponents: [NewsDetailsPage]
 })
 export class NewsDetailsPageModule {}

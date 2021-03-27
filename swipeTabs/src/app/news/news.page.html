@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>news</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-button expand="full" (click)="openDetails()">
+    Open Details from Code
+  </ion-button>
 
+  <ion-button expand="full" (click)="openAboutTab()">
+    Select About Tab
+  </ion-button>
+
+  <ion-nav-link router-direction="forward" [component]="newsDetails">
+    <ion-button expand="full">
+      Open Details with nav-link
+    </ion-button>
+  </ion-nav-link>
 </ion-content>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IonNav } from '@ionic/angular';
 
 @Component({
   selector: 'app-news-details',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsDetailsPage implements OnInit {
 
-  constructor() { }
+  constructor(private nav: IonNav) { }
 
   ngOnInit() {
+  }
+
+  goBack(){
+    this.nav.pop();
   }
 
 }

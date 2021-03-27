@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AccountPageRoutingModule } from './account-routing.module';
-
 import { AccountPage } from './account.page';
 
 @NgModule({
@@ -13,8 +11,8 @@ import { AccountPage } from './account.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AccountPageRoutingModule
   ],
-  declarations: [AccountPage]
+  declarations: [AccountPage],
+  entryComponents: [AccountPage]
 })
 export class AccountPageModule {}

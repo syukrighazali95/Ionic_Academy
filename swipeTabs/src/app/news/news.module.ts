@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NewsPageRoutingModule } from './news-routing.module';
-
 import { NewsPage } from './news.page';
 
 @NgModule({
@@ -13,8 +11,9 @@ import { NewsPage } from './news.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    NewsPageRoutingModule
+   
   ],
-  declarations: [NewsPage]
+  declarations: [NewsPage],
+  entryComponents: [NewsPage]
 })
 export class NewsPageModule {}
