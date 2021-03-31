@@ -7,7 +7,7 @@ import { map } from "rxjs/operators";
 })
 export class DataService {
   url = "https://newsapi.org/v2";
-  apiKey = "";
+  apiKey = "f9e14a63a0eb411eb5a739f2c09dee05";
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +29,7 @@ export class DataService {
       )
   }
 
-  getRandomUsers(){
+  getRandomUser(){
     return this.http.get(`http://randomuser.me/api?results=20`
     ).pipe(map(res => res['results']))
   }

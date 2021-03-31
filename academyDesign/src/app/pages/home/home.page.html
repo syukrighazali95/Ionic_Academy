@@ -1,9 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>home</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Sources</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/login" routerDirection="root">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div *ngFor="let s of sources" class="source-block" tappable (click)="openSource(s)" [ngClass]="{'bg-1': s.country == 'us', 'bg-2': s.country == 'gb', 'bg-3': s.country == 'it'}" [style]="getBlockColor(s)">
+    <p class="name">{{ s.name }}</p>
+  </div>
 </ion-content>
