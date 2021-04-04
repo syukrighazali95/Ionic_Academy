@@ -1,0 +1,3 @@
+to run using emulator, run using this command:
+
+ionic cordova emulate android
