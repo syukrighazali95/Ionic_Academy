@@ -10,6 +10,15 @@
 </ion-header>
 
 <ion-content>
+  <ion-slides>
+    <ion-slide *ngFor="let usr of users">
+      <ion-avatar>
+        <img [src]="usr.picture.large">
+      </ion-avatar>
+      <p>{{ usr.name.first }}</p>
+    </ion-slide>
+  </ion-slides>
+
   <div *ngFor="let s of sources" class="source-block" tappable (click)="openSource(s)" [ngClass]="{'bg-1': s.country == 'us', 'bg-2': s.country == 'gb', 'bg-3': s.country == 'it'}" [style]="getBlockColor(s)">
     <p class="name">{{ s.name }}</p>
   </div>

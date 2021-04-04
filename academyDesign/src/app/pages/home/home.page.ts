@@ -8,7 +8,8 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  sources = []
+  sources = [];
+  users = [];
 
   constructor(private data: DataService, private sanitizer: DomSanitizer) { }
 
@@ -16,6 +17,11 @@ export class HomePage implements OnInit {
     this.data.getSportSources().subscribe(res => {
       this.sources = res;
       console.log('res: ', res)
+    });
+
+    this.data.getRandomUser().subscribe(res => {
+      this.users = res;
+      console.log(res);
     })
   }
 
