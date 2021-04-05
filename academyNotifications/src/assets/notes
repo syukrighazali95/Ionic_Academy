@@ -1,3 +1,7 @@
 to run using emulator, run using this command:
 
-ionic cordova emulate android
+ionic cordova emulate android 
+ionic cordova emulate android --list
+
+if cordova errors:
+ionic integrations enable cordova --add
