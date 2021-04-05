@@ -5,3 +5,8 @@ ionic cordova emulate android --list
 
 if cordova errors:
 ionic integrations enable cordova --add
+
+
+if androidx error pops up:
+cordova plugin add cordova-plugin-androidx
+ionic cordova plugin add cordova-plugin-androidx-adapter
