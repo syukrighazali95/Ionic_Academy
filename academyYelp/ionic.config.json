@@ -1,0 +1,7 @@
+{
+  "name": "academyYelp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
