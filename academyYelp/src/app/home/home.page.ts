@@ -7,7 +7,37 @@ import { YelpService } from '../services/yelp.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  shortcutButtons = [
+    {
+      title: 'Restaurants',
+      icon: "pizza"
+    },
+    {
+      title: 'Coffee',
+      icon: "cafe"
+    },
+    {
+      title: 'Delivery',
+      icon: "bicycle"
+    },
+    {
+      title: 'Takeout',
+      icon: "beer"
+    },
+    {
+      title: 'Hairdressers',
+      icon: "cut"
+    },
+    {
+      title: 'Heating',
+      icon: "thermometer"
+    },
+    
+  ]
 
-  constructor(private yelpService: YelpService) {}
+  constructor() {}
 
+  openSearch() {
+    console.log("Open search")
+  }
 }
