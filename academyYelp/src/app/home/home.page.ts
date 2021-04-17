@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { SearchPage } from '../pages/search/search.page';
 import { YelpService } from '../services/yelp.service';
 
 @Component({
@@ -35,9 +37,14 @@ export class HomePage {
     
   ]
 
-  constructor() {}
+  constructor(private modalCtrl: ModalController) {}
 
-  openSearch() {
+  async openSearch() {
+    const modal = await this.modalCtrl.create ({
+      component: SearchPage
+    })
+
     console.log("Open search")
+    await modal.present();
   }
 }

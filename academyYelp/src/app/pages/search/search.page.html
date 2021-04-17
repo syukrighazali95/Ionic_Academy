@@ -1,0 +1,9 @@
+<ion-content>
+  <ion-item>
+    <ion-button slot="start" (click)="close()" fill="clear" color="medium">
+      <ion-icon name="chevron-back" slot="icon-only"></ion-icon>
+    </ion-button>
+    <ion-input clearInput="true" (keyup.enter)="startSearch()" enterkeyhint="search"
+    placeholder="Search for burgers, delivery ..." [(ngModel)]="searchTerm"></ion-input>
+  </ion-item>
+</ion-content>
