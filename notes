@@ -10,3 +10,10 @@ ionic integrations enable cordova --add
 if androidx error pops up:
 cordova plugin add cordova-plugin-androidx
 ionic cordova plugin add cordova-plugin-androidx-adapter
+
+
+if allowsyntheticdefaultimports error occured:
+"allowSyntheticDefaultImports": true, in tsconfig.json
+
+if angular errors
+npm install --save-dev @angular-devkit/build-angular

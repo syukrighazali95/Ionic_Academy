@@ -14,7 +14,7 @@ export class HomePage {
   constructor(private socialSharing: SocialSharing, private file: File) {}
 
   async shareTwitter(){
-    this.socialSharing.shareViaTwitter(null, null, this.url).then(() => {
+    this.socialSharing.shareViaTwitter(null, `${this.file.applicationDirectory}www/assets/imgs/person.jpg`).then(() => {
 
     }).catch((e) => {
 
@@ -48,7 +48,7 @@ export class HomePage {
 
   async shareFacebook(){
     let file = await this.resolveLocalFile();
-    this.socialSharing.shareViaFacebook(null, file.nativeURL, null).then(() => {
+    this.socialSharing.shareViaFacebook(null, file.nativeURL, this.url).then(() => {
       this.removeTempFile(file.name);
     }).catch((e) => {
 
